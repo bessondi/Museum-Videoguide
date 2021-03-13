@@ -1,24 +1,5 @@
-# video-guide
+## Museum Videoguide
 
-## Project setup
-```
-npm install
-```
+[comment]: <> ([Demo]&#40;&#41;)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[comment]: <> (![preview]&#40;preview.png&#41;)
