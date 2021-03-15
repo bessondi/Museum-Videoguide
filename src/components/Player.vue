@@ -1,12 +1,12 @@
 <template>
   <div @click="changeVisibility" class="player" >
     <youtube
+        ref="youtube"
         :video-id="videoId"
         :player-vars="playerVars"
-        ref="youtube"
-        class="youtubeFrame"
         :width="frameWidth"
         :height="frameHeight"
+        class="youtubeFrame"
     />
     <button @click="changeVisibility" class="closePlayerBtn">&times;</button>
   </div>

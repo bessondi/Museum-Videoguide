@@ -44,8 +44,9 @@ export default {
       const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems'
       const YOUTUBE_PLAYLIST = 'PLBjThViczbwqRPoX01nNR3vppD1nCy_7c'
 
-      const firstPart = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?key=${process.env.VUE_APP_YOUTUBE_API_KEY}&playlistId=${YOUTUBE_PLAYLIST}&part=snippet&maxResults=50&pageToken=CDIQAQ`)
-      const secondPart = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?key=${process.env.VUE_APP_YOUTUBE_API_KEY}&playlistId=${YOUTUBE_PLAYLIST}&part=snippet&maxResults=38&pageToken=CDIQAA`)
+      console.log(process.env)
+      const firstPart = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?key=${process.env.YOUTUBE_API_KEY}&playlistId=${YOUTUBE_PLAYLIST}&part=snippet&maxResults=50&pageToken=CDIQAQ`)
+      const secondPart = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?key=${process.env.YOUTUBE_API_KEY}&playlistId=${YOUTUBE_PLAYLIST}&part=snippet&maxResults=38&pageToken=CDIQAA`)
       const data1 = await firstPart.json()
       const data2 = await secondPart.json()
 
