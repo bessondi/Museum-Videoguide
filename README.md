@@ -1,5 +1,5 @@
 ## Museum Videoguide
 
-[comment]: <> ([Demo]&#40;&#41;)
+[Demo](https://demo-videoguide.herokuapp.com/)
 
 [comment]: <> (![preview]&#40;preview.png&#41;)
