@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <h1 class="title">Видеогид РЖЯ Музея Фаберже</h1>
+    <div class="title">
+      <img :src="handsLogo" alt="hands logo" class="title__logo">
+      <h1 class="title__heading">Видеогид РЖЯ Музея Фаберже</h1>
+    </div>
+
     <Player
         v-if="isPlayerOpen"
         :videoId="currentVideo"
@@ -18,10 +22,12 @@
 <script>
 import Player from './components/Player.vue'
 import PlayList from './components/PlayList.vue'
+import handsLogo from './assets/svg/hands.svg'
 
 export default {
   data() {
     return {
+      handsLogo,
       currentVideo: null,
       isPlayerOpen: false,
       videos: [],
@@ -51,12 +57,14 @@ export default {
       const data2 = await secondPart.json()
 
       const youTubeData = [...data1.items, ...data2.items]
+      console.log(data1)
 
       const covers = await youTubeData.map((c, i) => {
         return {
           id: i + 1,
           key: c.snippet.resourceId.videoId,
-          img: c.snippet.thumbnails.medium.url
+          img: c.snippet.thumbnails.medium.url,
+          title: c.snippet.title,
         }
       })
       this.videos.push(...covers)
@@ -69,7 +77,7 @@ export default {
 </script>
 
 
-<style>
+<style lang="scss">
 @font-face {
   font-family: "PlayfairDisplay";
   src: url("./assets/fonts/PlayfairDisplay-Regular.ttf") format('truetype');
@@ -92,15 +100,38 @@ body {
 }
 
 #app {
-  font-family: PlayfairDisplay, Avenir, Helvetica, Arial, sans-serif;
+  font-family: PlayfairDisplay, CirceLight, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  //padding-top: 60px;
 }
 
 .title {
-  text-align: center;
-  font-size: 2.5rem;
-  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+
+  @media screen and (max-width: 768px) {
+    margin: 20px 0;
+  }
+
+  &__logo {
+    width: 150px;
+    height: 150px;
+    margin: 10px 0;
+  }
+
+  &__heading {
+    text-align: center;
+    font-size: 3rem;
+    color: #000;
+    padding: 0 20px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 2.5rem;
+    }
+  }
 }
+
 </style>

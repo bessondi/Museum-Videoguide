@@ -3,8 +3,10 @@
     <VideoItem
        v-for="video in videos"
        :key="video.id"
+       :num="video.id"
        :idLink="video.key"
        :image="video.img"
+       :title="video.title"
        @playNewVideo="setVideo"
     />
   </div>
@@ -35,7 +37,7 @@ export default {
     display: flex;
     flex-flow: wrap;
     justify-content: space-around;
-    margin: 50px auto;
+    margin: auto;
     max-width: 1000px;
     width: 100%;
     height: 100%;
