@@ -1,12 +1,15 @@
 <template>
   <div class="playList">
-    <VideoItem
+    <Loader v-if="!isDataLoaded"/>
+
+    <VideoItem v-else
        v-for="video in videos"
        :key="video.id"
        :num="video.id"
        :idLink="video.key"
        :image="video.img"
        :title="video.title"
+       :delay="delay += 150"
        @playNewVideo="setVideo"
     />
   </div>
@@ -14,19 +17,30 @@
 
 
 <script>
+import Loader from "@/components/Loader";
 import VideoItem from "@/components/VideoItem";
 
 export default {
   props: {
     videos: Array
   },
+  data() {
+    return {
+      delay: 500,
+      isDataLoaded: false
+    }
+  },
   components: {
+    Loader,
     VideoItem
   },
   methods: {
-    setVideo(key) {
-      this.$emit('setNewVideo', key)
+    setVideo(key, title) {
+      this.$emit('setNewVideo', key, title)
     }
+  },
+  mounted() {
+    this.videos ? setTimeout(() => this.isDataLoaded = true, this.delay) : null
   }
 }
 </script>

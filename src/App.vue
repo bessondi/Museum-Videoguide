@@ -8,6 +8,7 @@
     <Player
         v-if="isPlayerOpen"
         :videoId="currentVideo"
+        :videoTitle="currentVideoTitle"
         @hide="hidePlayer"
     />
 
@@ -29,6 +30,7 @@ export default {
     return {
       handsLogo,
       currentVideo: null,
+      currentVideoTitle: null,
       isPlayerOpen: false,
       videos: [],
       youTubeData: null,
@@ -39,7 +41,8 @@ export default {
     PlayList
   },
   methods: {
-    setNewVideoToPlayer(key) {
+    setNewVideoToPlayer(key, title) {
+      this.currentVideoTitle = title
       this.currentVideo = key
       this.isPlayerOpen = true
     },
@@ -64,7 +67,7 @@ export default {
           id: i + 1,
           key: c.snippet.resourceId.videoId,
           img: c.snippet.thumbnails.medium.url,
-          title: c.snippet.title,
+          title: c.snippet.title
         }
       })
       this.videos.push(...covers)

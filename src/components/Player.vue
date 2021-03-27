@@ -1,5 +1,6 @@
 <template>
-  <div @click="changeVisibility" class="player" >
+  <div @click="changeVisibility" class="player">
+    <span class="title">{{videoTitle}}</span>
     <youtube
         ref="youtube"
         :video-id="videoId"
@@ -16,6 +17,7 @@
 export default {
   props: {
     videoId: String,
+    videoTitle: String
   },
   data() {
     return {
@@ -63,10 +65,24 @@ export default {
     bottom: 0;
     left: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background: rgba(0, 0, 0, 0.8);
     z-index: 10;
+
+    .title {
+      color: #fff;
+      font-size: 3rem;
+      margin-top: -50px;
+      margin-bottom: 50px;
+      text-align: center;
+      padding: 0 40px;
+
+      @media screen and (max-width: 768px) {
+        font-size: 1.5rem;
+      }
+    }
 
     .closePlayerBtn {
       position: fixed;

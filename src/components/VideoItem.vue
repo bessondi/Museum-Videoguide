@@ -1,5 +1,5 @@
 <template>
-  <div @click="playVideo" class="video">
+  <div @click="playVideo" :class="isLoaded ? 'video' : 'video video_hidden'">
     <img :src="image" :alt="title" class="video__cover">
 <!--    <div class="video__index">-->
 <!--      <div class="video__title">-->
@@ -16,23 +16,41 @@ export default {
     num: Number,
     image: String,
     idLink: String,
-    title: String
+    title: String,
+    delay: Number
+  },
+  data() {
+    return {
+      isLoaded: false
+    }
   },
   methods: {
     playVideo() {
-      this.$emit('playNewVideo', this.idLink)
+      this.$emit('playNewVideo', this.idLink, this.title)
     }
+  },
+  mounted() {
+    setTimeout(() => this.isLoaded = true, this.delay)
   }
 }
 </script>
 
 
 <style lang="scss" scoped>
+  .video.video_hidden {
+    opacity: 0;
+    transform: translateY(-15px);
+    transition: ease-in .4s;
+  }
+
   .video {
     position: relative;
     top: 1px;
     border-radius: 20px;
     margin: 10px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: ease-in .4s;
 
     &__cover {
       width: 300px;
