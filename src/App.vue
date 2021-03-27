@@ -60,7 +60,7 @@ export default {
       const data2 = await secondPart.json()
 
       const youTubeData = [...data1.items, ...data2.items]
-      console.log(data1)
+      // console.log(data1)
 
       const covers = await youTubeData.map((c, i) => {
         return {
@@ -114,6 +114,16 @@ body {
   justify-content: center;
   align-items: center;
   margin: 50px 0;
+  animation: showTitle 1s ease;
+
+  @keyframes showTitle {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
   @media screen and (max-width: 768px) {
     margin: 20px 0;

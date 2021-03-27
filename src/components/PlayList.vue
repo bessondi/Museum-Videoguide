@@ -1,15 +1,15 @@
 <template>
   <div class="playList">
-    <Loader v-if="!isDataLoaded"/>
+    <Loader v-if="!isDataLoaded" />
 
     <VideoItem v-else
-       v-for="video in videos"
+       v-for="(video, i) in videos"
        :key="video.id"
        :num="video.id"
        :idLink="video.key"
        :image="video.img"
        :title="video.title"
-       :delay="delay += 150"
+       :delay="delay + (i * 200) / 2"
        @playNewVideo="setVideo"
     />
   </div>
