@@ -1,6 +1,7 @@
 <template>
   <div @click="playVideo" :class="isLoaded ? 'video' : 'video video_hidden'">
     <img :src="image" :alt="title" class="video__cover">
+    <div class="video__cover-gradient"/>
 <!--    <div class="video__index">-->
 <!--      <div class="video__title">-->
 <!--        <span class="video__number">{{ num }}</span>-->
@@ -45,24 +46,36 @@ export default {
 
   .video {
     position: relative;
-    top: 1px;
     border-radius: 20px;
+    height: 170px;
     margin: 10px;
     opacity: 1;
     transform: translateY(0);
-    transition: ease-in .4s;
+    transition: .2s ease-in;
+
+    &:hover {
+      box-shadow: 0px 10px 25px 0px gray;
+      cursor: pointer;
+      transform: translateY(-2px);
+      transition: .2s ease-in;
+    }
 
     &__cover {
       width: 300px;
       height: 170px;
       border-radius: 20px;
-      transition: 0.2s linear;
+      transition: .3s ease-in;
+    }
 
-      &:hover {
-        transform: translate(0px, -1px);
-        box-shadow: 0px 10px 25px 0px gray;
-        cursor: pointer;
-      }
+    &__cover-gradient {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      height: 170px;
+      border-radius: 20px;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+      transition: .2s ease-in;
     }
 
     &__index {
